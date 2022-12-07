@@ -1,4 +1,5 @@
 using InventorySystem.UseCases.Inventories.PluginInterfaces;
+using InventorySystem.CoreBusiness;
 
 namespace InventorySystem.Plugins.Inventories
 {

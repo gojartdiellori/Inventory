@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using InventorySystem.UseCases;
+using InventorySystem.UseCases.Inventories;
+using InventorySystem.CoreBusiness;
 namespace InventorySystem.WebApi.Controllers;
 
 [ApiController]
@@ -23,7 +24,7 @@ public class WeatherForecastController : ControllerBase
     }
 
     [HttpGet(Name = "GetWeatherForecast")]
-    public IEnumerable<WeatherForecast> Get()
+    public Task<List<Inventory>> Get()
     {
         return _viewInventoryUseCase.GetAllInventoryItems();
     }

@@ -1,5 +1,6 @@
-using InventorySystem.UseCases;
-using InventorySystem.Plugins;
+using InventorySystem.UseCases.Inventories;
+using InventorySystem.UseCases.Inventories.PluginInterfaces;
+using InventorySystem.Plugins.Inventories;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
