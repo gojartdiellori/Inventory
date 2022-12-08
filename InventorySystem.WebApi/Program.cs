@@ -13,6 +13,11 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IInventoryRepository,InventoryRepository>();
 
 builder.Services.AddTransient<IViewInventoryUseCase,ViewInventoryUseCase>();
+builder.Services.AddTransient<IAddInventoryUseCase,AddInventoryUseCase>();
+builder.Services.AddTransient<IUpdateInventoryUseCase,UpdateInventoryUseCase>();
+
+
+
 
 
 var app = builder.Build();
