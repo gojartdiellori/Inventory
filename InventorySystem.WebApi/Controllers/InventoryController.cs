@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace InventorySystem.WebApi.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
     public class InventoryController : ControllerBase
     {
         private readonly IViewInventoryUseCase _viewInventoryUseCase;
@@ -24,7 +24,7 @@ namespace InventorySystem.WebApi.Controllers
             return _viewInventoryUseCase.GetAllInventoryItems();
         }
 
-        [HttpPost("/add")]
+        [HttpPost]
         public async Task AddInventory([FromBody] Inventory inventory)
         {
             await _addInventoryUseCase.ExecuteAsync(inventory);

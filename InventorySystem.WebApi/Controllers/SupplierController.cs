@@ -1,19 +1,22 @@
 using InventorySystem.CoreBusiness;
 using InventorySystem.UseCases.Suppliers.Interfaces;
-using InventorySystem.UseCases.Suppliers.PluginInterfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InventorySystem.WebApi.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
+
     public class SupplierController : ControllerBase
     {
         private readonly IViewSuppliersUseCase _viewSuppliersUseCase;
 
-        public SupplierController( IViewSuppliersUseCase viewSuppliersUseCase)
+        private readonly IAddSupplierUseCase _addSupplierUseCase;
+
+        public SupplierController(IViewSuppliersUseCase viewSuppliersUseCase, IAddSupplierUseCase addSupplierUseCase)
         {
             _viewSuppliersUseCase = viewSuppliersUseCase;
+            _addSupplierUseCase = addSupplierUseCase;
         }
 
         [HttpGet]
@@ -21,6 +24,12 @@ namespace InventorySystem.WebApi.Controllers
 
             return _viewSuppliersUseCase.ExecuteAsync();
 
+        }
+
+        [HttpPost]
+        public async Task AddSupplier([FromBody]Supplier supplier) 
+        {
+            await _addSupplierUseCase.ExecuteAsync(supplier);
         }
 
     }

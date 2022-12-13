@@ -6,6 +6,8 @@ namespace InventorySystem.UseCases.Suppliers.PluginInterfaces
     {
         
         public Task<List<Supplier>> GetSuppliers();
+        
+        public Task AddSuppliers(Supplier supplier);
 
     }
 }
