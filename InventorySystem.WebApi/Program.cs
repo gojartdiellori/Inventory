@@ -1,6 +1,11 @@
 using InventorySystem.UseCases.Inventories;
 using InventorySystem.UseCases.Inventories.PluginInterfaces;
 using InventorySystem.Plugins.Inventories;
+using InventorySystem.Plugins.Suppliers;
+using InventorySystem.UseCases.Suppliers.PluginInterfaces;
+using InventorySystem.UseCases.Suppliers.Interfaces;
+using InventorySystem.UseCases.Suppliers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -11,11 +16,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IInventoryRepository,InventoryRepository>();
+builder.Services.AddSingleton<ISupplierRepository,SupplierRepository>();
+
 
 builder.Services.AddTransient<IViewInventoryUseCase,ViewInventoryUseCase>();
 builder.Services.AddTransient<IAddInventoryUseCase,AddInventoryUseCase>();
 builder.Services.AddTransient<IUpdateInventoryUseCase,UpdateInventoryUseCase>();
-
+builder.Services.AddTransient<IViewSuppliersUseCase,ViewSuppliersUseCase>();
 
 
 

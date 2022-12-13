@@ -10,7 +10,6 @@ namespace InventorySystem.WebApi.Controllers
     {
         private readonly IViewInventoryUseCase _viewInventoryUseCase;
         private readonly IAddInventoryUseCase _addInventoryUseCase;
-
         private readonly IUpdateInventoryUseCase _updateInventoryUseCase;
 
         public InventoryController(IViewInventoryUseCase viewInventoryUseCase, IAddInventoryUseCase addInventoryUseCase, IUpdateInventoryUseCase updateInventoryUseCase)
