@@ -24,13 +24,13 @@ namespace InventorySystem.WebApi.Controllers
             return _viewInventoryUseCase.GetAllInventoryItems();
         }
 
-        [HttpPost]
+        [HttpPost("add")]
         public async Task AddInventory([FromBody] Inventory inventory)
         {
             await _addInventoryUseCase.ExecuteAsync(inventory);
         }
 
-        [HttpPut("/update")]
+        [HttpPut("update")]
         public async Task UpdateInventory([FromBody] Inventory inventory)
         {
             await _updateInventoryUseCase.ExecuteAsync(inventory);

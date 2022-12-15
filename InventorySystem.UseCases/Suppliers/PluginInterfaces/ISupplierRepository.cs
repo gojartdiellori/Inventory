@@ -9,5 +9,7 @@ namespace InventorySystem.UseCases.Suppliers.PluginInterfaces
         
         public Task AddSuppliers(Supplier supplier);
 
+        public Task UpdateSupplier(Supplier supplier);
+
     }
 }

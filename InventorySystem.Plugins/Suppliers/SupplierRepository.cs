@@ -5,7 +5,7 @@ namespace InventorySystem.Plugins.Suppliers
 {
     public class SupplierRepository : ISupplierRepository
     {
-        List<Supplier> listOfSuppliers;
+        private List<Supplier> listOfSuppliers;
         public SupplierRepository()
         {
             listOfSuppliers = new List<Supplier>(){
@@ -31,11 +31,21 @@ namespace InventorySystem.Plugins.Suppliers
 
         public Task<List<Supplier>> GetSuppliers()
         {
-            return Task.FromResult(new List<Supplier>() {
-                new Supplier {ID =1 ,Name="American MED"},
-                new Supplier {ID =2 ,Name="American EDU"},
+            return Task.FromResult(listOfSuppliers);
+        }
 
-            });
+        public Task UpdateSupplier(Supplier supplier)
+        {
+            var sup = listOfSuppliers.FirstOrDefault(x => x.ID == supplier.ID);
+
+            if(sup is not null)
+            {
+
+                sup.Name=supplier.Name;
+
+            }
+            return Task.CompletedTask;
+
         }
     }
 }

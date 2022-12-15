@@ -32,7 +32,7 @@ namespace InventorySystem.Plugins.Inventories
 
             // find max of id 
             var maxId=_inventories.Max(x=>x.ID);
-            inventory.ID=maxId;
+            inventory.ID=maxId+1;
             
             _inventories.Add(inventory);
             return Task.CompletedTask;

@@ -13,10 +13,13 @@ namespace InventorySystem.WebApi.Controllers
 
         private readonly IAddSupplierUseCase _addSupplierUseCase;
 
-        public SupplierController(IViewSuppliersUseCase viewSuppliersUseCase, IAddSupplierUseCase addSupplierUseCase)
+        private readonly IUpdateSupplierUseCase _updateSupplierUseCase;
+
+        public SupplierController(IViewSuppliersUseCase viewSuppliersUseCase, IAddSupplierUseCase addSupplierUseCase, IUpdateSupplierUseCase updateSupplierUseCase)
         {
             _viewSuppliersUseCase = viewSuppliersUseCase;
             _addSupplierUseCase = addSupplierUseCase;
+            _updateSupplierUseCase = updateSupplierUseCase;
         }
 
         [HttpGet]
@@ -26,10 +29,16 @@ namespace InventorySystem.WebApi.Controllers
 
         }
 
-        [HttpPost]
+        [HttpPost("add")]
         public async Task AddSupplier([FromBody]Supplier supplier) 
         {
             await _addSupplierUseCase.ExecuteAsync(supplier);
+        }
+
+        [HttpPut("update")]
+        public async Task UpdateSupplier([FromBody] Supplier supplier)
+        {
+            await _updateSupplierUseCase.ExecuteAsync(supplier);
         }
 
     }
