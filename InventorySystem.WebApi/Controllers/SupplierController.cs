@@ -14,23 +14,26 @@ namespace InventorySystem.WebApi.Controllers
         private readonly IAddSupplierUseCase _addSupplierUseCase;
 
         private readonly IUpdateSupplierUseCase _updateSupplierUseCase;
+        private readonly IDeleteSupplierUseCase _deleteSupplierUseCase;
 
-        public SupplierController(IViewSuppliersUseCase viewSuppliersUseCase, IAddSupplierUseCase addSupplierUseCase, IUpdateSupplierUseCase updateSupplierUseCase)
+        public SupplierController(IViewSuppliersUseCase viewSuppliersUseCase, IAddSupplierUseCase addSupplierUseCase, IUpdateSupplierUseCase updateSupplierUseCase, IDeleteSupplierUseCase deleteSupplierUseCase)
         {
             _viewSuppliersUseCase = viewSuppliersUseCase;
             _addSupplierUseCase = addSupplierUseCase;
             _updateSupplierUseCase = updateSupplierUseCase;
+            _deleteSupplierUseCase = deleteSupplierUseCase;
         }
 
         [HttpGet]
-        public Task<List<Supplier>> GetSuppliers(){
+        public Task<List<Supplier>> GetSuppliers()
+        {
 
             return _viewSuppliersUseCase.ExecuteAsync();
 
         }
 
         [HttpPost("add")]
-        public async Task AddSupplier([FromBody]Supplier supplier) 
+        public async Task AddSupplier([FromBody] Supplier supplier)
         {
             await _addSupplierUseCase.ExecuteAsync(supplier);
         }
@@ -41,5 +44,10 @@ namespace InventorySystem.WebApi.Controllers
             await _updateSupplierUseCase.ExecuteAsync(supplier);
         }
 
+        [HttpDelete("{id}")]
+        public async Task DeleteSupplier(int id)
+        {
+            await _deleteSupplierUseCase.ExecuteAsync(id);
+        }
     }
 }

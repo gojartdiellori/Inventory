@@ -15,17 +15,31 @@ namespace InventorySystem.Plugins.Suppliers
         }
 
         public Task AddSuppliers(Supplier supplier)
-        {   
-            if(listOfSuppliers.Any(s=>s.Name==supplier.Name))
+        {
+            if (listOfSuppliers.Any(s => s.Name == supplier.Name))
                 return Task.CompletedTask;
-            
-            var maxId=listOfSuppliers.Max(x=>x.ID);
 
-            var newId= maxId+1;
+            var maxId = listOfSuppliers.Max(x => x.ID);
 
-            supplier.ID=newId;
+            var newId = maxId + 1;
+
+            supplier.ID = newId;
 
             listOfSuppliers.Add(supplier);
+            return Task.CompletedTask;
+        }
+
+        public Task DeleteSupplier(int id)
+        {
+            var sup = listOfSuppliers.FirstOrDefault(x => x.ID == id);
+
+            if (sup is null)
+            {
+                return Task.CompletedTask;
+            }
+
+            listOfSuppliers.Remove(sup);
+
             return Task.CompletedTask;
         }
 
@@ -38,14 +52,16 @@ namespace InventorySystem.Plugins.Suppliers
         {
             var sup = listOfSuppliers.FirstOrDefault(x => x.ID == supplier.ID);
 
-            if(sup is not null)
+            if (sup is not null)
             {
 
-                sup.Name=supplier.Name;
+                sup.Name = supplier.Name;
 
             }
             return Task.CompletedTask;
 
         }
+
+
     }
 }

@@ -26,6 +26,8 @@ builder.Services.AddTransient<IViewSuppliersUseCase, ViewSuppliersUseCase>();
 builder.Services.AddTransient<IAddSupplierUseCase, AddSupplierUseCase>();
 builder.Services.AddTransient<IUpdateSupplierUseCase, UpdateSupplierUseCase>();
 builder.Services.AddTransient<IDeleteInventoryUseCase, DeleteInventoryUseCase>();
+builder.Services.AddTransient<IDeleteSupplierUseCase, DeleteSupplierUseCase>();
+
 
 
 
