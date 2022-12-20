@@ -15,16 +15,18 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<IInventoryRepository,InventoryRepository>();
-builder.Services.AddSingleton<ISupplierRepository,SupplierRepository>();
+builder.Services.AddSingleton<IInventoryRepository, InventoryRepository>();
+builder.Services.AddSingleton<ISupplierRepository, SupplierRepository>();
 
 
-builder.Services.AddTransient<IViewInventoryUseCase,ViewInventoryUseCase>();
-builder.Services.AddTransient<IAddInventoryUseCase,AddInventoryUseCase>();
-builder.Services.AddTransient<IUpdateInventoryUseCase,UpdateInventoryUseCase>();
-builder.Services.AddTransient<IViewSuppliersUseCase,ViewSuppliersUseCase>();
-builder.Services.AddTransient<IAddSupplierUseCase,AddSupplierUseCase>();
-builder.Services.AddTransient<IUpdateSupplierUseCase,UpdateSupplierUseCase>();
+builder.Services.AddTransient<IViewInventoryUseCase, ViewInventoryUseCase>();
+builder.Services.AddTransient<IAddInventoryUseCase, AddInventoryUseCase>();
+builder.Services.AddTransient<IUpdateInventoryUseCase, UpdateInventoryUseCase>();
+builder.Services.AddTransient<IViewSuppliersUseCase, ViewSuppliersUseCase>();
+builder.Services.AddTransient<IAddSupplierUseCase, AddSupplierUseCase>();
+builder.Services.AddTransient<IUpdateSupplierUseCase, UpdateSupplierUseCase>();
+builder.Services.AddTransient<IDeleteInventoryUseCase, DeleteInventoryUseCase>();
+
 
 
 

@@ -20,21 +20,35 @@ namespace InventorySystem.Plugins.Inventories
                 ID=2,
                 Name="Books"
             }
-            
+
         };
 
         }
 
         public Task AddInventoryAsync(Inventory inventory)
         {
-            if (_inventories.Any(x=>x.Name==inventory.Name)) 
+            if (_inventories.Any(x => x.Name == inventory.Name))
                 return Task.CompletedTask;
 
             // find max of id 
-            var maxId=_inventories.Max(x=>x.ID);
-            inventory.ID=maxId+1;
-            
+            var maxId = _inventories.Max(x => x.ID);
+            inventory.ID = maxId + 1;
+
             _inventories.Add(inventory);
+            return Task.CompletedTask;
+        }
+
+        public Task DeleteInventory(int id)
+        {
+            var inventory = _inventories.FirstOrDefault(x => x.ID == id);
+
+            if (inventory is null)
+            {
+                return Task.CompletedTask;
+            }
+
+            _inventories.Remove(inventory);
+
             return Task.CompletedTask;
         }
 
@@ -45,11 +59,11 @@ namespace InventorySystem.Plugins.Inventories
 
         public Task UpdateInventoryAsync(Inventory inventory)
         {
-           var inv = _inventories.FirstOrDefault(x=> x.ID == inventory.ID);
-           if(inv != null) 
-           {
-              inv.Name=inventory.Name;
-           }
+            var inv = _inventories.FirstOrDefault(x => x.ID == inventory.ID);
+            if (inv != null)
+            {
+                inv.Name = inventory.Name;
+            }
             return Task.CompletedTask;
         }
     }

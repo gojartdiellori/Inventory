@@ -11,16 +11,19 @@ namespace InventorySystem.WebApi.Controllers
         private readonly IViewInventoryUseCase _viewInventoryUseCase;
         private readonly IAddInventoryUseCase _addInventoryUseCase;
         private readonly IUpdateInventoryUseCase _updateInventoryUseCase;
+        private readonly IDeleteInventoryUseCase _deleteInventoryUseCase;
 
-        public InventoryController(IViewInventoryUseCase viewInventoryUseCase, IAddInventoryUseCase addInventoryUseCase, IUpdateInventoryUseCase updateInventoryUseCase)
+        public InventoryController(IViewInventoryUseCase viewInventoryUseCase, IAddInventoryUseCase addInventoryUseCase, IUpdateInventoryUseCase updateInventoryUseCase, IDeleteInventoryUseCase deleteInventoryUseCase)
         {
             _viewInventoryUseCase = viewInventoryUseCase;
             _addInventoryUseCase = addInventoryUseCase;
             _updateInventoryUseCase = updateInventoryUseCase;
+            _deleteInventoryUseCase = deleteInventoryUseCase;
         }
 
         [HttpGet]
-        public Task<List<Inventory>> GetInventories() {
+        public Task<List<Inventory>> GetInventories()
+        {
             return _viewInventoryUseCase.GetAllInventoryItems();
         }
 
@@ -34,6 +37,12 @@ namespace InventorySystem.WebApi.Controllers
         public async Task UpdateInventory([FromBody] Inventory inventory)
         {
             await _updateInventoryUseCase.ExecuteAsync(inventory);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task DeleteInventory(int id)
+        {
+            await _deleteInventoryUseCase.ExecuteAsync(id);
         }
     }
 }

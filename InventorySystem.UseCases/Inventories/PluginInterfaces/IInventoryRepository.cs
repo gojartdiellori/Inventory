@@ -9,6 +9,6 @@ namespace InventorySystem.UseCases.Inventories.PluginInterfaces
         public Task AddInventoryAsync(Inventory inventory);
 
         public Task UpdateInventoryAsync(Inventory inventory);
-
+        Task DeleteInventory(int id);
     }
 }
